@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: staging_schema
+    schema: staging
+    database: AIRBNB_DB
+    description: "Emplacement des données brutes"
+
+    tables:
+      - name: hosts
+      - name: bookings
+      - name: listings
+
