@@ -37,7 +37,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   dbt_cloud_snowflake_aws_airbnb :
-    # Applies to all files under models/example/
+    # Applies to all files under models/
     00_bronze:
       +materialized: table
       +schema: bronze
+    01_silver:
+      +materialized: table
+      +schema: silver
