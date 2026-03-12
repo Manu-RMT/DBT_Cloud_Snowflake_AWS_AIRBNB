@@ -33,6 +33,11 @@
     end
 {% endmacro %}
 
+
+-- Macro qui catégorise une reponse en fonction de sa valeur
+-- column_name : colonne numérique contenant la note
+-- Retourne une catégorie : VERY GOOD / GOOD / FAIR
+
 {% macro tag_response_rate(column_name) %}
     case
         when {{ column_name }} > 95 then 'VERY GOOD'
