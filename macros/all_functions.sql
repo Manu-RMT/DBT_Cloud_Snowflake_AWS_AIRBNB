@@ -32,4 +32,12 @@
         else 'High'
     end
 {% endmacro %}
- 
+
+{% macro tag_response_rate(column_name) %}
+    case
+        when {{ column_name }} > 95 then 'VERY GOOD'
+        when {{ column_name }} > 75 then 'GOOD'
+        when {{ column_name }} > 50 then 'FAIR'
+        else 'POOR'
+    end
+{% endmacro %}
