@@ -47,3 +47,5 @@ models:
     03_gold:
       +materialized: table
       +schema: gold
+      ephemeral:
+        +materialized: ephemeral
