@@ -11,8 +11,9 @@ models:
       - name: BOOKING_AMOUNT
         tests:
           - not_null
-        meta:
-          type : number
+        config:
+          meta:
+            type : number
       - name: CREATED_AT
         tests:
           - not_null
