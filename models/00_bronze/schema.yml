@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: bronze_bookings
+    description: "Table de données des bookings en incremental"
+    columns:
+      - name: booking_id
+        tests:
+          - not_null
+          - unique
+      - name: BOOKING_AMOUNT
+        tests:
+          - not_null
+        meta:
+          type : number
+      - name: CREATED_AT
+        tests:
+          - not_null
+  
+  - name: bronze_hosts
+    description: "Table de données des logements en incremental date new data > last date table"
+    columns:
+      - name: host_id
+        tests:
+          - not_null
+      - name: CREATED_AT
+        tests:
+          - not_null
+
+  - name: bronze_listings
+    description: "Table de données des annonces Airbnb en incrémental également"
+    columns:
+      - name: host_id
+        tests:
+          - not_null
+      - name: CREATED_AT
+        tests:
+          - not_null
+      - name: listing_id
+        tests:
+          - not_null
+          - unique
+       
