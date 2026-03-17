@@ -2,12 +2,19 @@
     severity='warn'
 ) }}
 
-WITH booking_source AS (
+WITH unique_booking_source as (
+    SELECT 
+        DISTINCT *
+    FROM 
+        {{ source('staging_schema', 'bookings') }}
+) ,
+
+booking_source AS (
 
     SELECT
         SUM(BOOKING_AMOUNT) AS total_booking
     FROM 
-        {{ source('staging_schema', 'bookings') }}
+        unique_booking_source
 
 ),
 
