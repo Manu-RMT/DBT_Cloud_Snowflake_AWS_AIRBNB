@@ -1,5 +1,6 @@
 WITH listings as (
     SELECT
+        DISTINCT
         LISTING_ID,
         PROPERTY_TYPE,
         ROOM_TYPE,
