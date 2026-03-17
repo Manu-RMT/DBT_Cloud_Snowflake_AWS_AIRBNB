@@ -1,0 +1,50 @@
+===============================================================================
+                   DBT CHEAT SHEET - ESSENTIALS (2026)
+===============================================================================
+
+--- [ 1. COMMANDES DE BASE ] ---
+dbt run             # Exécute les modèles (crée tables/vues)
+dbt test            # Lance les tests (unique, not_null, etc.)
+dbt build           # La totale : run + test + seed + snapshot
+dbt seed            # Charge les CSV du dossier /seeds en table
+dbt snapshot        # Exécute les captures d'historique (SCD Type 2)
+dbt docs generate   # Génère la documentation (JSON)
+dbt docs serve      # Lance l'interface web de la doc (port 8080)
+dbt deps            # Installe les packages (packages.yml)
+dbt clean           # Supprime les dossiers /target et /dbt_packages
+
+--- [ 2. SÉLECTION DE MODÈLES (SÉLECTEURS) ] ---
+dbt run -s my_model            # Uniquement ce modèle
+dbt run -s staging.* # Tous les modèles dans le dossier staging
+dbt run -s +my_model           # Le modèle ET ses parents (amont)
+dbt run -s my_model+           # Le modèle ET ses enfants (aval)
+dbt run -s +my_model+          # Parents + Modèle + Enfants
+dbt run -s tag:nightly         # Modèles avec le tag "nightly"
+dbt run --exclude bad_model    # Tout sauf ce modèle
+
+--- [ 3. DÉVELOPPEMENT & DEBUG ] ---
+dbt debug           # Teste la connexion à la DB et le profil
+dbt compile         # Génère le SQL final dans target/compiled/
+dbt run --full-refresh         # Recrée une table (ignore l'incrémental)
+dbt list            # Liste toutes les ressources du projet
+dbt run -s state:failed        # Relance uniquement ce qui a échoué (nécessite --state)
+
+--- [ 4. JINJA & SQL SNIPPETS ] ---
+{{ ref('my_model') }}          # Référence à un autre modèle (Lignage)
+{{ source('schema', 'table') }} # Référence à une table source brute
+{{ config(materialized='table') }} # Configuration au sommet du fichier SQL
+
+--- [ 5. TESTS STANDARDS (schema.yml) ] ---
+tests:
+ - unique          # Pas de doublons dans la colonne
+ - not_null        # Pas de valeurs vides
+ - accepted_values:
+     values: ['fr', 'en', 'es']
+ - relationships:
+     to: ref('other_table')
+     field: id
+
+
+===============================================================================
+
+ 
