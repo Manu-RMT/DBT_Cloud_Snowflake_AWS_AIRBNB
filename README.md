@@ -54,13 +54,6 @@ Le projet utilise le lignage natif de dbt pour assurer la traçabilité :
 
 ---
 
-## 💻 Installation et Utilisation
-
-1. **Installer les dépendances :**
-  ```bash
-  dbt deps
-
- 
 
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
