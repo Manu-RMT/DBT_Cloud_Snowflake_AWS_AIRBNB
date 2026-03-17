@@ -1,5 +1,6 @@
 WITH hosts as (
     SELECT
+        distinct
         HOST_ID,
         HOST_NAME,
         HOST_SINCE,
